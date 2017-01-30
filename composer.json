@@ -1,0 +1,16 @@
+{
+    "name": "terranc/core-library",
+    "description": "公共库",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "terranc",
+            "email": "terran.chao@lookfeel.co"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "lookfeel\\": "src"
+        }
+    }
+}
