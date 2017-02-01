@@ -25,36 +25,11 @@ trait Instance
      */
     protected $instance_key;
 
-    /**
-     * 构造函数
-     *
-     * @param array $option            
-     */
-    protected function __construct($option = [])
+    public static function instance(array $rules = [], $message = [])
     {
-        $this->instance_option = $option;
-        
-        // 初始化
-        $this->_initialize();
-    }
-
-    /**
-     * 初始化
-     */
-    protected function _initialize()
-    {}
-
-    /**
-     * 获取实例
-     *
-     * @param array $option            
-     * @return self
-     */
-    public static function instance($option = [])
-    {
-        $key = md5(get_called_class() . serialize($option));
+        $key = md5(get_called_class() . serialize($rules) . serialize($message));
         if (! isset(static::$instances[$key])) {
-            $instance = new static($option);
+            $instance = new static($rules, $message);
             $instance->instance_key = $key;
             static::$instances[$key] = $instance;
         }
@@ -64,7 +39,7 @@ trait Instance
     /**
      * 根据key获取实例
      *
-     * @param string $key            
+     * @param string $key
      * @return self
      */
     public static function instanceGet($key)
@@ -75,8 +50,8 @@ trait Instance
     /**
      * 读取或者设置配置
      *
-     * @param string $name            
-     * @param string $value            
+     * @param string $name
+     * @param string $value
      * @return mixed
      */
     public function option($name = null, $value = null)
