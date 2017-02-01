@@ -8,6 +8,7 @@
             "email": "terran.chao@lookfeel.co"
         }
     ],
+    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
             "lookfeel\\": "src"
